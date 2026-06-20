@@ -111,9 +111,9 @@ Construir una demo jugable completa que valide todas las mecánicas principales.
 | Crear proyecto Unity | Juan José | Hecho |
 | Crear repositorio Git | Juan José | Hecho |
 | Configurar ramas | Juan José | Hecho |
-| Definir estructura de carpetas | Todos | Pendiente |
-| Definir flujo de Pull Requests | Todos | Pendiente |
-| Definir nomenclatura de scripts | Todos | Pendiente |
+| Definir estructura de carpetas | Todos | Hecho |
+| Definir flujo de Pull Requests | Todos | Hecho |
+| Definir nomenclatura de scripts | Todos | Hecho |
 | Crear tablero Trello | Todos | Pendiente |
 
 **Resultado esperado:** Todos pueden trabajar simultáneamente sin conflictos.
