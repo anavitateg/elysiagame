@@ -41,6 +41,10 @@ Menú Principal
 
 https://github.com/anavitateg/elysiagame
 
+## Tablero Trello
+
+https://trello.com/b/BK1q96lS/elysia-descent-desarrollo
+
 ## Ramas activas
 
 | Rama | Propósito |

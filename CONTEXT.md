@@ -15,7 +15,7 @@
 | Pipeline de render | Universal Render Pipeline (URP) 17.5.0 |
 | Arte 3D | Blender |
 | Control de versiones | Git + GitHub |
-| Gestión de tareas | Trello |
+| Gestión de tareas | [Trello — Elysia Descent](https://trello.com/b/BK1q96lS/elysia-descent-desarrollo) |
 | IDEs | Visual Studio Code / Rider |
 | Repositorio | https://github.com/anavitateg/elysiagame |
 
@@ -114,7 +114,7 @@ Construir una demo jugable completa que valide todas las mecánicas principales.
 | Definir estructura de carpetas | Todos | Hecho |
 | Definir flujo de Pull Requests | Todos | Hecho |
 | Definir nomenclatura de scripts | Todos | Hecho |
-| Crear tablero Trello | Todos | Pendiente |
+| Crear tablero Trello | Todos | Hecho |
 
 **Resultado esperado:** Todos pueden trabajar simultáneamente sin conflictos.
 
