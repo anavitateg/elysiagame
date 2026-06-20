@@ -1,6 +1,7 @@
 # Version Tracker — Elysia
 
 > Fuente de verdad del estado del proyecto. Actualizar con `/archive` al cerrar cada feature.
+> Narrativa y diálogos: `.claude/context/STORY.md`
 > Última actualización: 2026-06-20
 
 ---
@@ -75,11 +76,11 @@
 ### Nero — feature/world
 - [x] `WorldSetupTool.cs` — genera materiales y escena automáticamente
 - [ ] Ejecutar `WorldSetupTool` en Unity → revisar que la escena se ve correcta
-- [ ] `Iglesia_Interior.unity` — geometría placeholder lista
-- [ ] `Iglesia_Exterior.unity` — geometría placeholder lista
-- [ ] Trigger de salida en Iglesia_Interior (hacia Exterior)
-- [ ] Trigger de encuentro en Iglesia_Exterior (activa combate)
-- [ ] NavMesh horneado en ambas escenas
+- [ ] `Iglesia_Interior.unity` — iglesia en ruinas placeholder (bancos, vidrieras rojas, luz roja)
+- [ ] `Bosque_Oscuro.unity` — bosque oscuro placeholder (árboles cilindros, iluminación luna)
+- [ ] `Trigger_Door` en Iglesia_Interior — activa Cinemática 2 al pulsar E
+- [ ] Lucerna como NPC placeholder (cilindro) en Iglesia_Interior
+- [ ] NavMesh horneado en `Bosque_Oscuro.unity` para IA del lobo
 - [ ] Commit y push `feature/world`
 - [ ] PR `feature/world` → `develop`
 
@@ -108,11 +109,14 @@
 ### Nicolás — feature/dialogues
 - [ ] `DialogueManager.cs`
 - [ ] `DialogueTrigger.cs`
-- [ ] `DialogueData.cs` (ScriptableObject)
+- [ ] `DialogueData.cs` (ScriptableObject con `DialogueLine { speaker, text }[]`)
 - [ ] `DialogueUI.cs`
+- [ ] `Dialogo_CinematicaIntro.asset` — 16 líneas de Cinemática 1 (ver STORY.md)
+- [ ] `Dialogo_CinematicaPuerta.asset` — 5 líneas de Cinemática 2 (ver STORY.md)
 
 ### Nicolás — feature/cinematics
-- [ ] `Cinematica_Intro.unity` con Timeline
+- [ ] `Cinematica_Intro.unity` — Cinemática 1 completa con Timeline
+- [ ] `Cinematica_Puerta` — Timeline dentro de `Iglesia_Interior` (activado por trigger de puerta)
 
 ### Juan José — feature/player (continuación)
 - [ ] `PlayerStats.cs`
@@ -120,11 +124,11 @@
 - [ ] `PlayerCombat.cs`
 
 ### 4to miembro — feature/combat
-- [ ] `EnemyAI.cs`
-- [ ] `EnemyStats.cs`
-- [ ] `EnemyData.cs` (ScriptableObject)
-- [ ] `CombatManager.cs`
-- [ ] `EnemySlime.prefab`
+- [ ] `EnemyAI.cs` — NavMesh, perseguir a Elysia, atacar
+- [ ] `EnemyStats.cs` — vida actual, referencia a EnemyData SO
+- [ ] `EnemyData.cs` (ScriptableObject — vida, daño, velocidad, rango)
+- [ ] `CombatManager.cs` — inicia combate al cargar Bosque_Oscuro, detecta fin de demo
+- [ ] `Droglot_Lobo.prefab` — placeholder oscuro con EnemyAI + EnemyStats
 
 ---
 

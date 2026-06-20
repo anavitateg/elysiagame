@@ -89,15 +89,18 @@ Una vez en `develop`: Nicolás puede conectar el menú, el 4to miembro puede cam
 - [ ] `Mundo_Prototipo.unity` con Player colocado y cámara CameraFollow activa
 
 ### Entregables Nero
-- [ ] `WorldSetupTool` ejecutado en Unity → `Mundo_Prototipo.unity` generada
+- [ ] `WorldSetupTool` ejecutado en Unity → `Mundo_Prototipo.unity` generada (prueba inicial)
 - [ ] Escena `Iglesia_Interior.unity` con geometría placeholder
-  - Piso, paredes, pilares, cajas
-  - Punto de spawn del jugador definido
-  - Trigger de salida hacia Iglesia_Exterior
-- [ ] `Iglesia_Exterior.unity` con geometría placeholder
-  - Zona exterior de la iglesia
-  - Área de encuentro con el monstruo (trigger)
-- [ ] NavMesh horneado en ambas escenas para IA del enemigo
+  - Iglesia en ruinas: piso, paredes con moho, bancos desgastados (cubo marrón)
+  - Vidrieras (planos con material rojo oscuro) que filtren luz
+  - Punto de spawn de Elysia definido
+  - Lucerna como NPC placeholder (cilindro) en posición fija
+  - `Trigger_Door`: zona en la puerta principal que activa la Cinemática 2 al pulsar E
+- [ ] Escena `Bosque_Oscuro.unity` con geometría placeholder
+  - Camino oscuro con árboles placeholder (cilindros negros/morados)
+  - Zona de spawn de lobos (Droglots)
+  - Iluminación oscura — luna simulada con luz direccional azul/blanca
+- [ ] NavMesh horneado en `Bosque_Oscuro.unity` para IA del lobo
 
 ### Qué desbloquea
 Player.prefab en develop: todos pueden colocar al jugador en sus escenas de prueba.
@@ -138,19 +141,24 @@ Sistema de diálogos (necesita NPC y UI base) y combate (necesita trigger y Heal
 **Requiere:** Fase C completada
 
 ### Entregables Nicolás
-- [ ] `DialogueManager.cs` — avanza líneas, controla flujo
-- [ ] `DialogueTrigger.cs` — detecta proximidad del jugador e input E
-- [ ] `DialogueData.cs` — ScriptableObject con líneas y hablante
-- [ ] `DialogueUI.cs` — panel de texto en pantalla
-- [ ] `Cinematica_Intro.unity` con Timeline reproducible
-- [ ] Al final del Timeline: `SceneLoader.Load("Iglesia_Interior")`
+- [ ] `DialogueManager.cs` — avanza líneas, controla flujo de diálogo
+- [ ] `DialogueTrigger.cs` — detecta input E cerca de Lucerna (NPC)
+- [ ] `DialogueData.cs` — ScriptableObject: array de `DialogueLine { speaker, text }`
+- [ ] `DialogueUI.cs` — panel con nombre del hablante y texto de línea
+- [ ] `Cinematica_Intro.unity` — Cinemática 1 con Timeline y diálogos de Lucerna/Elysia
+  - Al final del Timeline: `SceneLoader.Load("Iglesia_Interior")`
+- [ ] `Cinematica_Puerta` — Cinemática 2 (puede ser Timeline dentro de `Iglesia_Interior`)
+  - Activada por `Trigger_Door` al pulsar E en la puerta
+  - Al final: `SceneLoader.Load("Bosque_Oscuro")`
+- [ ] `Assets/_Game/ScriptableObjects/Dialogues/Dialogo_CinematicaIntro.asset`
+- [ ] `Assets/_Game/ScriptableObjects/Dialogues/Dialogo_CinematicaPuerta.asset`
 
 ### Entregables 4to miembro
-- [ ] `EnemyAI.cs` — NavMeshAgent, perseguir al jugador, atacar
+- [ ] `EnemyAI.cs` — NavMeshAgent, perseguir a Elysia, atacar al alcanzar rango
 - [ ] `EnemyStats.cs` — vida, daño (referencias a `EnemyData` ScriptableObject)
-- [ ] `EnemyData.cs` — ScriptableObject con valores configurables
-- [ ] `EnemySlime.prefab` — geometría placeholder + scripts
-- [ ] `CombatManager.cs` — inicia/termina combate, evalúa victoria/derrota
+- [ ] `EnemyData.cs` — ScriptableObject configurable (vida, daño, velocidad, rango)
+- [ ] `Droglot_Lobo.prefab` — geometría placeholder (cubo/cápsula oscuro) + scripts
+- [ ] `CombatManager.cs` — inicia combate al entrar a `Bosque_Oscuro`, evalúa fin de demo
 
 ### Entregables Juan José
 - [ ] `PlayerStats.cs` — vida actual, referencia a `PlayerData` SO

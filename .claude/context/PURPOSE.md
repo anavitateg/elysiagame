@@ -2,8 +2,12 @@
 
 ## ¿Qué es Elysia?
 
-Elysia es un videojuego RPG narrativo en desarrollo por un equipo de 4 personas.
-El jugador controla un personaje 2D (estilo Paper Mario) dentro de un mundo 3D construido en Unity 6 con URP.
+**Elysia: Descent** es un videojuego RPG de acción narrativo en desarrollo por un equipo de 4 personas.
+El jugador controla a **Elysia**, una exorcista de Abbysum, representada como un personaje 2D (estilo Paper Mario) dentro de un mundo 3D construido en Unity 6 con URP.
+
+El mundo está invadido por criaturas corruptas llamadas **Droglots**. La demo comienza con Elysia despertando herida en una iglesia abandonada, donde conoce a **Lucerna**, una exorcista local que la ayudó.
+
+Narrativa completa: `.claude/context/STORY.md`
 
 ## Objetivo del primer prototipo jugable
 

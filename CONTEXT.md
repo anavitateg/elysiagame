@@ -8,7 +8,7 @@
 
 | Campo | Valor |
 |---|---|
-| Nombre | Elysia |
+| Nombre | Elysia: Descent |
 | Género | RPG de acción / narrativo |
 | Plataforma objetivo | PC (Windows) |
 | Engine | Unity 6000.5.0f1 (Unity 6 LTS) |
@@ -27,26 +27,34 @@ Construir una demo jugable completa que valide todas las mecánicas principales.
 
 ### Flujo completo de la demo
 
+> Fuente narrativa completa: `.claude/context/STORY.md`
+
 ```
 [Menú Principal]
        ↓ Iniciar Partida
-[Cinemática de Introducción]
+
+[CINEMÁTICA 1 — Intro]
+  Elysia despierta herida en una iglesia abandonada
+  Lucerna (NPC compañera) entra y se presenta
+  Diálogo: Elysia descubre que Droglots invaden la zona
        ↓
-[Iglesia — Interior]
-  • El jugador puede moverse
-  • El jugador puede hablar con el NPC
-       ↓ Salir de la iglesia
-[Iglesia — Exterior]
-  • El jugador encuentra un monstruo
-  • Se activa el combate
+
+[GAMEPLAY 1 — Iglesia Interior]
+  • Elysia (jugable) se mueve libremente por la iglesia
+  • Interactúa con la puerta (tecla E)
+       ↓ Al interactuar con la puerta
+
+[CINEMÁTICA 2 — La puerta]
+  Lucerna y Elysia abren las puertas
+  Ven cadáveres de Droglots en el bosque oscuro
+  Lobos (Droglots) aparecen al fondo
        ↓
-[Sistema de Combate]
+
+[GAMEPLAY 2 — Bosque Oscuro]
+  • Elysia puede golpear a los lobos (Droglots)
   • Barras de vida visibles
-  • El monstruo puede atacar
-  • El jugador puede atacar
        ↓
-  [Victoria] → Pantalla de resultado
-  [Derrota]  → Game Over / Reintentar
+  [FIN DE LA DEMO]
 ```
 
 ### Requisitos mínimos del prototipo
@@ -137,12 +145,13 @@ Objetivo: el juego funciona de principio a fin aunque todo sea visualmente simpl
 | Sistema de atributos | Juan José |
 | Barra de vida | Juan José |
 | Flujo narrativo inicial | Juan José |
-| Escenario Iglesia Interior (placeholder) | Nero |
-| Escenario Iglesia Exterior (placeholder) | Nero |
-| Colisiones y navegación | Nero |
-| Sistema base del monstruo | Persona adicional |
-| Detección de combate | Persona adicional |
-| IA básica | Persona adicional |
+| Escenario Iglesia Interior placeholder (ruinas, luz roja) | Nero |
+| Escenario Bosque Oscuro placeholder (exterior de combate) | Nero |
+| Colisiones y navegación NavMesh | Nero |
+| Trigger de puerta en Iglesia Interior | Nero |
+| Sistema base del lobo (Droglot) | Persona adicional |
+| Detección de combate al entrar al Bosque | Persona adicional |
+| IA básica del lobo (perseguir y atacar a Elysia) | Persona adicional |
 
 **Resultado esperado:** Demo completa jugable usando únicamente figuras geométricas.
 
@@ -225,9 +234,9 @@ Assets/
 │   │   └── VFX/
 │   ├── Scenes/              # Archivos .unity
 │   │   ├── MainMenu.unity
-│   │   ├── Cinematica_Intro.unity
-│   │   ├── Iglesia_Interior.unity
-│   │   ├── Iglesia_Exterior.unity
+│   │   ├── Cinematica_Intro.unity       ← Cinemática 1: Elysia despierta, conoce a Lucerna
+│   │   ├── Iglesia_Interior.unity       ← Gameplay 1: exploración + trigger de puerta
+│   │   ├── Bosque_Oscuro.unity          ← Gameplay 2: combate con lobos (Droglots)
 │   │   └── GameOver.unity
 │   ├── ScriptableObjects/   # Assets de datos (instancias de SO)
 │   │   ├── Characters/
@@ -252,11 +261,11 @@ Assets/
 
 | Escena | Responsable | Contenido |
 |---|---|---|
-| `MainMenu` | Nicolás | Canvas menú, botones, fondo |
-| `Cinematica_Intro` | Nicolás | Timeline con cámara y subtítulos |
-| `Iglesia_Interior` | Nero | Placeholder iglesia, NPC, trigger de salida |
-| `Iglesia_Exterior` | Nero | Placeholder exterior, trigger de enemigo |
-| `GameOver` | Juan José / Nicolás | Pantalla victoria/derrota, botón reintentar |
+| `MainMenu` | Nicolás | Canvas menú, botón "Iniciar" → carga Cinematica_Intro |
+| `Cinematica_Intro` | Nicolás | Cinemática 1: Elysia despierta, Lucerna entra, diálogos (Timeline) |
+| `Iglesia_Interior` | Nero | Gameplay 1: iglesia en ruinas, Lucerna como NPC estático, trigger de puerta (E) → Cinemática 2 |
+| `Bosque_Oscuro` | Nero | Gameplay 2: bosque oscuro con lobos (Droglots), zona de combate |
+| `GameOver` | Juan José / Nicolás | Pantalla fin de demo |
 
 **Convención de nombres de escena:** `PascalCase` sin espacios.
 
@@ -517,12 +526,16 @@ Para instalar: `Window → Package Manager → Unity Registry`
 - [ ] El tablero de Trello tiene las tareas de la Etapa 2 creadas
 
 ### Checklist Etapa 2
-- [ ] Ejecutar la escena `MainMenu` → pulsar Play → inicia la cinemática
-- [ ] La cinemática termina y carga `Iglesia_Interior`
-- [ ] El jugador (cápsula) se mueve con WASD/joystick
-- [ ] Al acercarse al NPC (cubo) y pulsar `E`, aparece el diálogo
-- [ ] Al salir por la puerta, carga `Iglesia_Exterior`
-- [ ] Al acercarse al enemigo (cubo rojo), se activa el combate
+- [ ] Ejecutar la escena `MainMenu` → pulsar "Iniciar" → carga `Cinematica_Intro`
+- [ ] La cinemática 1 se reproduce completa con los diálogos de Lucerna y Elysia
+- [ ] Al terminar la cinemática 1, carga `Iglesia_Interior`
+- [ ] Elysia (Quad cian) se mueve con WASD, salta con Space
+- [ ] Lucerna (NPC placeholder) está visible en la iglesia
+- [ ] Al pulsar `E` cerca de la puerta, se reproduce la Cinemática 2
+- [ ] La cinemática 2 muestra el bosque oscuro y los diálogos de los lobos
+- [ ] Al terminar la cinemática 2, carga `Bosque_Oscuro`
+- [ ] Los lobos (Droglots placeholder) aparecen y persiguen a Elysia
+- [ ] Elysia puede atacar a los lobos y reducir su vida
 - [ ] Aparecen barras de vida en pantalla
 - [ ] El enemigo se mueve hacia el jugador y ataca
 - [ ] El jugador puede atacar y bajar la vida del enemigo
