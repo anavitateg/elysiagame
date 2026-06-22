@@ -7,8 +7,8 @@
 ## Índice
 
 1. [Software que necesitas instalar](#1-software-que-necesitas-instalar)
-2. [Acceso al repositorio privado de GitHub](#2-acceso-al-repositorio-privado-de-github)
-3. [Clonar el repositorio](#3-clonar-el-repositorio)
+2. [Clonar el repositorio](#2-clonar-el-repositorio)
+3. [Configurar Git en tu PC](#3-configurar-git-en-tu-pc)
 4. [Inicializar el proyecto en Unity](#4-inicializar-el-proyecto-en-unity)
 5. [Verificar que todo funciona](#5-verificar-que-todo-funciona)
 6. [Guía específica por miembro del equipo](#6-guía-específica-por-miembro-del-equipo)
@@ -22,20 +22,20 @@
 | Software | Versión | Descarga | Para qué |
 |---|---|---|---|
 | **Unity Hub** | Última | [unity.com/download](https://unity.com/download) | Gestor de versiones de Unity |
-| **Unity Editor** | **6000.5.0f1** (obligatorio) | Desde Unity Hub | Engine del juego |
+| **Unity Editor** | **6000.5.0f1** ← exacta | Desde Unity Hub | Engine del juego |
 | **Git** | Última | [git-scm.com](https://git-scm.com) | Control de versiones |
 | **Visual Studio Code** | Última | [code.visualstudio.com](https://code.visualstudio.com) | Editor de código |
 
-> ⚠️ **La versión de Unity debe ser exactamente 6000.5.0f1.** Si abres el proyecto con otra versión Unity lo migrará y generará conflictos para el resto del equipo.
+> ⚠️ **La versión de Unity debe ser exactamente `6000.5.0f1`.** Si abres el proyecto con una versión diferente, Unity lo migrará automáticamente y generará conflictos para todo el equipo.
 
-### Cómo instalar Unity 6000.5.0f1
+### Cómo instalar la versión correcta de Unity
 
 1. Instala **Unity Hub** primero
-2. Abre Unity Hub → pestaña **Installs** → `Install Editor`
-3. En el buscador escribe `6000.5.0f1` o busca en el archivo de versiones
-4. En los módulos a instalar, asegúrate de marcar:
-   - `Windows Build Support (IL2CPP)` — para hacer builds de PC
-   - `Microsoft Visual Studio Community` — o marca `Visual Studio Code` si prefieres VSCode
+2. Abre Unity Hub → pestaña **Installs** → botón `Install Editor`
+3. Busca la versión `6000.5.0f1` (puede aparecer como **Unity 6.0.5**)
+4. En los módulos adicionales, marca:
+   - ✅ `Windows Build Support (IL2CPP)` — para hacer builds de PC
+   - ✅ `Visual Studio Code Editor` — integración con VSCode
 
 ### Solo Nero (arte y escenarios)
 
@@ -45,67 +45,65 @@
 
 ---
 
-## 2. Acceso al repositorio privado de GitHub
+## 2. Clonar el repositorio
 
-El repositorio es **privado**. Para acceder, necesitas dos cosas:
+El repositorio es **público**, así que cualquier persona puede clonarlo directamente sin necesitar cuenta de GitHub ni contraseña.
 
-### Paso A — Que Juan José te agregue como colaborador
-
-1. Juan José entra a: `https://github.com/anavitateg/elysiagame`
-2. Va a **Settings → Collaborators → Add people**
-3. Escribe el nombre de usuario de GitHub de cada miembro
-4. El miembro recibe un email de invitación → debe aceptarla
-
-### Paso B — Configurar tu acceso desde la terminal
-
-Hay dos opciones. Elige **una**:
-
----
-
-#### Opción 1: Token de acceso personal (más simple, recomendada)
-
-1. En GitHub, ve a tu foto de perfil → **Settings**
-2. En el menú izquierdo baja hasta **Developer settings**
-3. **Personal access tokens → Tokens (classic) → Generate new token (classic)**
-4. Dale un nombre: `elysia-dev`
-5. En expiración: `No expiration` (o 90 días si prefieres)
-6. Marca el permiso: ✅ `repo` (acceso completo a repositorios)
-7. Haz clic en **Generate token**
-8. **Copia el token ahora** — no lo podrás ver de nuevo
-
-Cuando Git te pida contraseña al clonar o hacer push, usa este token como contraseña (tu usuario de GitHub es el usuario de login).
-
----
-
-#### Opción 2: GitHub Desktop (sin terminal, más visual)
-
-1. Descarga **GitHub Desktop** en [desktop.github.com](https://desktop.github.com)
-2. Inicia sesión con tu cuenta de GitHub
-3. File → `Clone repository` → pestaña `GitHub.com`
-4. Busca `anavitateg/elysiagame` → selecciona dónde guardarlo → Clone
-
-Si usas GitHub Desktop puedes saltarte la sección 3 y continuar desde la sección 4.
-
----
-
-## 3. Clonar el repositorio
-
-Abre una terminal (PowerShell en Windows o la terminal de Git) y ejecuta:
+Abre una terminal (PowerShell, Git Bash o la terminal de tu sistema) y ejecuta:
 
 ```bash
 git clone https://github.com/anavitateg/elysiagame.git
 ```
 
-Te pedirá usuario y contraseña:
-- **Usuario:** tu nombre de usuario de GitHub
-- **Contraseña:** el token que generaste en el Paso B
+Si quieres elegir dónde se guarda la carpeta:
 
-Cuando termine, tendrás una carpeta `elysiagame` con todo el proyecto.
+```bash
+git clone https://github.com/anavitateg/elysiagame.git "C:\Users\TuNombre\Desktop\elysiagame"
+```
 
-> Si quieres clonarlo en una carpeta específica:
-> ```bash
-> git clone https://github.com/anavitateg/elysiagame.git "C:\Users\TuNombre\Desktop\elysiagame"
-> ```
+Cuando termine tendrás la carpeta `elysiagame` con todo el proyecto listo.
+
+> **¿Prefieres interfaz visual?** Puedes usar **GitHub Desktop** ([desktop.github.com](https://desktop.github.com)):
+> `File → Clone repository → URL` → pega `https://github.com/anavitateg/elysiagame` → Clone
+
+---
+
+## 3. Configurar Git en tu PC
+
+Aunque el repo es público para leer y clonar, para **subir tus cambios (push)** necesitas identificarte. Esto se hace una sola vez.
+
+### 3.1 Configurar tu nombre y correo
+
+Abre la terminal y ejecuta estas dos líneas con tus datos:
+
+```bash
+git config --global user.name "Tu Nombre"
+git config --global user.email "tuemail@ejemplo.com"
+```
+
+Usa el mismo email que tienes registrado en tu cuenta de GitHub.
+
+### 3.2 Que Juan José te agregue como colaborador
+
+Para poder hacer push necesitas permiso de escritura. Juan José debe:
+
+1. Entrar a `https://github.com/anavitateg/elysiagame`
+2. Ir a **Settings → Collaborators → Add people**
+3. Escribir tu nombre de usuario de GitHub
+4. Tú recibirás un email de invitación → **debes aceptarla**
+
+### 3.3 Configurar tu contraseña para el push
+
+La primera vez que hagas `git push`, GitHub te pedirá autenticación. La forma más simple:
+
+1. Ve a GitHub → tu foto de perfil → **Settings**
+2. Baja hasta **Developer settings → Personal access tokens → Tokens (classic)**
+3. **Generate new token (classic)**
+4. Nombre: `elysia-push`, expiración: `90 days`, permiso: ✅ `repo`
+5. Copia el token generado
+6. Cuando Git te pida contraseña al hacer push, pega ese token
+
+> Después de la primera vez, Git recuerda tus credenciales y no te vuelve a pedir.
 
 ---
 
@@ -114,48 +112,50 @@ Cuando termine, tendrás una carpeta `elysiagame` con todo el proyecto.
 ### 4.1 Abrir el proyecto con Unity Hub
 
 1. Abre **Unity Hub**
-2. En la pestaña **Projects**, haz clic en **Open → Add project from disk**
+2. Pestaña **Projects** → botón **Open → Add project from disk**
 3. Navega hasta la carpeta `elysiagame` que clonaste
-4. Selecciona la carpeta raíz (donde está el archivo `elysiagame.slnx`)
-5. Asegúrate de que Unity Hub detecta la versión **6000.5.0f1** — si no, descárgala
+4. Selecciona la carpeta raíz (la que contiene `Assets/`, `ProjectSettings/`, `CONTEXT.md`, etc.)
+5. Asegúrate de que Unity Hub muestra la versión **6000.5.0f1** al lado del proyecto
 
-### 4.2 Primera apertura (puede tardar 5-10 minutos)
+### 4.2 Primera apertura (5 a 10 minutos)
 
-La primera vez que abres el proyecto, Unity necesita importar todos los assets y compilar los scripts. Verás una barra de progreso en la esquina inferior derecha. **No cierres Unity hasta que termine.**
+La primera vez Unity necesita regenerar la carpeta `Library/` (no está en Git porque pesa demasiado). Verás una barra de progreso en la esquina inferior derecha del Editor.
 
-Lo que hace Unity en este proceso:
-- Genera la carpeta `Library/` (no está en Git, por eso tarda)
-- Compila todos los scripts C#
-- Importa los materiales y configuración URP
+**No cierres Unity hasta que termine.** Es normal que tarde.
 
-### 4.3 Verificar que compiló correctamente
+### 4.3 Revisar la consola de Unity
 
-Una vez abierto, mira la **consola de Unity** (`Window → General → Console`):
-- ✅ Sin errores rojos = todo bien
-- ❌ Si hay errores rojos: probablemente falta un paquete. Ve a `Window → Package Manager` y verifica que `Input System`, `AI Navigation` y `Universal Render Pipeline` están instalados
+Una vez abierto, ve a `Window → General → Console`:
+
+- ✅ Sin errores rojos → todo compiló bien
+- ❌ Errores rojos → ve a `Window → Package Manager` y verifica que estos paquetes están instalados:
+  - `Input System` 1.19.0
+  - `AI Navigation` 2.0.13
+  - `Universal Render Pipeline` 17.5.0
+  - `Timeline` 1.8.12
 
 ### 4.4 Generar la escena de prueba
 
 En el menú superior de Unity:
+
 1. Haz clic en **Elysia → Setup → Create World Scene**
-2. Aparece un diálogo de confirmación → clic en **Crear**
-3. Unity genera automáticamente:
-   - La estructura de materiales de colores
-   - La escena `Assets/_Game/Scenes/Mundo_Prototipo.unity`
-4. La escena debería abrirse y mostrar un espacio interior con pilares y cajas
+2. Aparece un diálogo de confirmación → **Crear**
+3. Unity genera automáticamente materiales de colores y la escena `Mundo_Prototipo.unity`
+4. La escena se abre mostrando un espacio con pilares, cajas y luz cálida
 
 ---
 
 ## 5. Verificar que todo funciona
 
-Antes de empezar a trabajar, confirma estos puntos:
+Confirma estos puntos antes de empezar a trabajar:
 
 - [ ] Unity abre sin errores rojos en la consola
-- [ ] Ves la carpeta `Assets/_Game/` en el panel Project con todas sus subcarpetas
-- [ ] Puedes ejecutar `Elysia → Setup → Create World Scene` sin errores
+- [ ] La carpeta `Assets/_Game/` aparece en el panel Project con todas sus subcarpetas
+- [ ] El menú **Elysia** aparece en la barra superior de Unity
+- [ ] Al ejecutar **Elysia → Setup → Create World Scene** no hay errores
 - [ ] La escena `Mundo_Prototipo.unity` se abre y muestra geometría con colores
 
-Si todo está marcado, estás listo para trabajar.
+Si todo está marcado, estás listo.
 
 ---
 
@@ -168,39 +168,42 @@ Si todo está marcado, estás listo para trabajar.
 git checkout develop
 git pull origin develop
 
-# Pasarte a tu rama de trabajo
+# Ir a tu rama de trabajo
 git checkout feature/tu-rama
 
-# Traer a tu rama lo que otros mergearon a develop
+# Actualizar tu rama con lo que llegó a develop
 git merge develop
 
-# ... trabajas en Unity / escribes código ...
+# ... trabajas en Unity, escribes código, configuras escenas ...
 
-# Al terminar — guardar y subir tu trabajo
-# 1. En Unity: Ctrl+S para guardar la escena
-# 2. En la terminal:
-git add Assets/_Game/Scripts/TuScript.cs
-git add Assets/_Game/Scripts/TuScript.cs.meta
-git commit -m "feat(player): descripcion de lo que hiciste"
+# En Unity: Ctrl+S para guardar la escena antes de commitear
+
+# Subir tu trabajo
+git add Assets/_Game/Scripts/TuCarpeta/TuArchivo.cs
+git add Assets/_Game/Scripts/TuCarpeta/TuArchivo.cs.meta
+git commit -m "feat(area): descripcion corta de lo que hiciste"
 git push origin feature/tu-rama
 ```
+
+Después de hacer push, abre GitHub y crea un **Pull Request** de tu rama hacia `develop`. El equipo lo revisa y aprueba antes de mergear.
 
 ---
 
 ### Juan José — Core y Player
 
-**Tu rama:** `feature/player`
-**Lo que harás primero:** `GameManager.cs` y `SceneLoader.cs` (Fase A del proyecto — todo el equipo te espera para esto)
+**Rama:** `feature/player`
+**Prioridad máxima:** `GameManager.cs` y `SceneLoader.cs` — todo el equipo queda bloqueado hasta que esto esté en `develop`.
 
-#### Setup inicial
+#### Empezar a trabajar
+
 ```bash
 git checkout feature/player
 ```
 
-#### Ejemplo de tu primer día de trabajo
+#### Primer día — crear el Core
 
-1. Crea el archivo `Assets/_Game/Scripts/Core/GameManager.cs`
-2. Crea el archivo `Assets/_Game/Scripts/Core/SceneLoader.cs`
+1. Crea `Assets/_Game/Scripts/Core/GameManager.cs`
+2. Crea `Assets/_Game/Scripts/Core/SceneLoader.cs`
 3. Guarda en Unity (`Ctrl+S`)
 4. En la terminal:
 
@@ -213,112 +216,128 @@ git commit -m "feat(core): add GameManager singleton and SceneLoader"
 git push origin feature/player
 ```
 
-5. En GitHub, abre un **Pull Request**: `feature/player → develop`
-6. El equipo lo revisa y aprueba
+5. En GitHub, abre un Pull Request: `feature/player → develop`
 
 #### Orden de tus tareas
 
 ```
-1. GameManager.cs + SceneLoader.cs  ← hazlo primero, desbloquea a todos
-2. Player.prefab en Unity Editor     ← configuras el Quad + scripts
-3. PlayerStats.cs                    ← vida, datos del jugador
-4. PlayerCombat.cs                   ← ataque de Elysia
+1. GameManager.cs + SceneLoader.cs     ← primero, desbloquea a todos
+2. Player.prefab en Unity Editor       ← Quad + CharacterController + scripts
+3. PlayerStats.cs                      ← vida actual, referencia a PlayerData SO
+4. PlayerCombat.cs                     ← ataque de Elysia contra los lobos
 ```
 
 ---
 
 ### Nicolás — UI, Diálogos y Cinemáticas
 
-**Tus ramas:** `feature/menu`, `feature/dialogues`, `feature/cinematics`
-**Lo que harás primero:** Esperar a que Juan José mergee el `SceneLoader` a `develop`, luego empezar el menú
+**Ramas:** `feature/menu`, `feature/dialogues`, `feature/cinematics`
+**Espera:** El `SceneLoader` de Juan José en `develop` antes de conectar el menú.
 
-#### Setup inicial
+#### Empezar a trabajar
+
 ```bash
-# Cuando Juan José termine el Core:
+# Cuando Juan José mergee el Core a develop:
 git checkout develop
 git pull origin develop
 git checkout feature/menu
 git merge develop
 ```
 
-#### Ejemplo: crear el sistema de diálogos
+#### Primer día — crear el sistema de diálogos
 
-Los diálogos de Elysia y Lucerna están definidos en `.claude/context/STORY.md`. Tu trabajo es implementarlos como ScriptableObjects.
+Los diálogos de Elysia y Lucerna están en `.claude/context/STORY.md` — ya están escritos y listos para implementar. Tu trabajo es crear el sistema que los muestre.
 
-1. Crea `Assets/_Game/Scripts/Dialogue/DialogueData.cs`
-2. En Unity, crea el asset de diálogos de la Cinemática 1:
+1. Crea `Assets/_Game/Scripts/Dialogue/DialogueData.cs` — ScriptableObject con un array de líneas `{ speaker, text }`
+2. Crea `Assets/_Game/Scripts/Dialogue/DialogueUI.cs` — muestra el nombre del hablante y el texto
+3. Crea `Assets/_Game/Scripts/Dialogue/DialogueManager.cs` — avanza las líneas con input del jugador
+4. En Unity, crea los assets de datos:
    - Clic derecho en `Assets/_Game/ScriptableObjects/Dialogues/`
    - `Create → Elysia → DialogueData`
-   - Nómbralo `Dialogo_CinematicaIntro`
-   - Llena las 16 líneas de la tabla en `.claude/context/STORY.md`
-3. Haz lo mismo para `Dialogo_CinematicaPuerta` (5 líneas)
+   - Nómbralo `Dialogo_CinematicaIntro` y llena las 16 líneas de la Cinemática 1
+   - Repite para `Dialogo_CinematicaPuerta` (5 líneas de la Cinemática 2)
 
 ```bash
 git checkout feature/dialogues
-git add Assets/_Game/Scripts/Dialogue/DialogueData.cs
+git add Assets/_Game/Scripts/Dialogue/
 git add Assets/_Game/ScriptableObjects/Dialogues/
-git commit -m "feat(dialogue): add DialogueData SO with cinematic 1 and 2 lines"
+git commit -m "feat(dialogue): add dialogue system and cinematic dialogue assets"
 git push origin feature/dialogues
 ```
 
 #### Orden de tus tareas
 
 ```
-1. MainMenu.unity + botón de inicio     ← feature/menu
-2. DialogueData.cs + DialogueUI.cs     ← feature/dialogues
-3. Los assets de diálogos SO (texto)   ← feature/dialogues
-4. Cinematica_Intro.unity con Timeline ← feature/cinematics
-5. Cinemática 2 (trigger de puerta)    ← feature/cinematics
+1. MainMenu.unity + botón Iniciar Partida    ← feature/menu
+2. DialogueData.cs + DialogueUI.cs           ← feature/dialogues
+3. Assets de diálogos SO (texto de STORY.md) ← feature/dialogues
+4. Cinematica_Intro.unity con Timeline       ← feature/cinematics
+5. Cinemática 2 activada por trigger puerta  ← feature/cinematics
 ```
 
 ---
 
 ### Nero — Escenarios y Arte
 
-**Tu rama:** `feature/world`
-**Lo que harás primero:** Crear `Iglesia_Interior.unity` y `Bosque_Oscuro.unity` con geometría placeholder
+**Rama:** `feature/world`
+**Puede empezar ahora** — los escenarios no dependen del Core de Juan José.
 
-#### Setup inicial
+#### Empezar a trabajar
+
 ```bash
 git checkout feature/world
 ```
 
-#### Ejemplo: crear Iglesia_Interior.unity
+#### Primer día — crear Iglesia_Interior.unity
 
-La iglesia debe ser una ruina con luz roja oscura (ver descripción visual en `.claude/context/STORY.md`). Para el placeholder:
+La iglesia es una **ruina abandonada con luz roja** filtrada por vidrieras (ver descripción visual en `.claude/context/STORY.md`). Todo con primitivas de colores por ahora.
 
 1. En Unity: `File → New Scene → Empty`
-2. Guárdala como `Assets/_Game/Scenes/Iglesia_Interior.unity`
-3. Crea la geometría con primitivas:
-   - **Floor:** `GameObject → 3D Object → Plane` → escala (2, 1, 3), material `Floor_Mat`
-   - **Paredes:** Cubes oscuros, material `Wall_Mat`
-   - **Bancos (desgastados):** Cubes marrones alargados, material `Crate_Mat`
-   - **Luz roja:** `Directional Light` con color rojo oscuro (#8B1A1A) y baja intensidad
-   - **Lucerna NPC:** Cylinder en posición fija (donde estará el personaje)
-   - **Trigger_Door:** Empty GameObject con Box Collider (Is Trigger: ✅) en la puerta
-4. Guarda la escena: `Ctrl+S`
+2. Guárdala: `Assets/_Game/Scenes/Iglesia_Interior.unity`
+3. Construye la geometría:
+
+| Elemento | Primitiva | Material | Notas |
+|---|---|---|---|
+| Piso | Plane | `Floor_Mat` | Escala (2, 1, 3) |
+| Paredes | Cubes | `Wall_Mat` | 4 paredes, altura 3 |
+| Bancos desgastados | Cubes alargados | `Crate_Mat` | En filas, como bancas de iglesia |
+| Vidrieras | Planes verticales | Material rojo oscuro | En los huecos de las paredes |
+| Lucerna NPC | Cylinder | `Pillar_Mat` | Posición fija cerca del altar |
+| Trigger puerta | Empty + Box Collider | — | `Is Trigger: ✅`, al fondo de la iglesia |
+| Luz principal | Directional Light | Color rojo oscuro #8B1A1A | Intensidad 0.6 |
+
+4. Guarda: `Ctrl+S`
 
 ```bash
 git add Assets/_Game/Scenes/Iglesia_Interior.unity
 git add Assets/_Game/Scenes/Iglesia_Interior.unity.meta
-git commit -m "feat(world): add Iglesia_Interior placeholder with door trigger and Lucerna NPC"
+git commit -m "feat(world): add Iglesia_Interior placeholder with red light and door trigger"
 git push origin feature/world
 ```
 
-#### Para Bosque_Oscuro.unity
+#### Segundo día — crear Bosque_Oscuro.unity
 
-```
-- Iluminación: Directional Light azul oscuro + intensidad baja (simula luna)
-- Árboles: Cylinders negros/morados muy altos (escala Y grande)
-- Camino: Plane estrecho central
-- Zona de spawn de lobos: Empty GameObject con Box Collider (Is Trigger: ✅)
+El bosque oscuro es el escenario de combate. Debe sentirse opresivo y de noche.
+
+| Elemento | Primitiva | Material | Notas |
+|---|---|---|---|
+| Camino | Plane estrecho | `Wall_BG_Mat` | Centro de la escena |
+| Árboles | Cylinders altos | `Wall_BG_Mat` | Escala Y grande, a los lados del camino |
+| Luna | Point Light azul-blanca | — | Arriba, intensidad baja |
+| Zona de spawn lobos | Empty + Box Collider | — | `Is Trigger: ✅`, al fondo del camino |
+
+```bash
+git add Assets/_Game/Scenes/Bosque_Oscuro.unity
+git add Assets/_Game/Scenes/Bosque_Oscuro.unity.meta
+git commit -m "feat(world): add Bosque_Oscuro placeholder with wolf spawn zone"
+git push origin feature/world
 ```
 
 #### Orden de tus tareas
 
 ```
-1. Iglesia_Interior.unity (ruinas, luz roja, bancos, Lucerna, Trigger_Door)
-2. Bosque_Oscuro.unity (bosque oscuro, luna, zona de spawn de lobos)
+1. Iglesia_Interior.unity (ruinas, luz roja, Lucerna, Trigger_Door)
+2. Bosque_Oscuro.unity (bosque oscuro, zona de spawn de lobos)
 3. NavMesh en Bosque_Oscuro (Window → AI → Navigation → Bake)
 4. Prefab de Lucerna como NPC estático
 ```
@@ -327,10 +346,11 @@ git push origin feature/world
 
 ### Persona adicional — Enemigo y Combate
 
-**Tu rama:** `feature/combat`
-**Lo que harás primero:** Esperar a que estén en develop: Player.prefab (Juan José) y Bosque_Oscuro.unity (Nero)
+**Rama:** `feature/combat`
+**Espera:** `Player.prefab` de Juan José y `Bosque_Oscuro.unity` de Nero en `develop`.
 
-#### Setup inicial
+#### Empezar a trabajar
+
 ```bash
 # Cuando los prerequisitos estén en develop:
 git checkout develop
@@ -339,74 +359,80 @@ git checkout feature/combat
 git merge develop
 ```
 
-#### Ejemplo: crear el lobo (Droglot)
+#### Primer día — crear el lobo Droglot
 
-El enemigo de la demo es un **lobo Droglot** — un placeholder oscuro que persigue a Elysia y la ataca.
+El enemigo de la demo es un **lobo Droglot**. Placeholder oscuro que persigue a Elysia y la ataca.
 
-1. Crea `Assets/_Game/Scripts/Enemy/EnemyData.cs` (ScriptableObject con vida, daño, velocidad, rango)
-2. Crea `Assets/_Game/Scripts/Enemy/EnemyAI.cs` (NavMeshAgent que sigue a Elysia)
-3. En Unity, crea el prefab:
+1. Crea `Assets/_Game/Scripts/Enemy/EnemyData.cs` — ScriptableObject con `maxHealth`, `damage`, `speed`, `attackRange`
+2. Crea `Assets/_Game/Scripts/Enemy/EnemyStats.cs` — vida actual, toma daño, muere
+3. Crea `Assets/_Game/Scripts/Enemy/EnemyAI.cs` — NavMeshAgent que detecta a Elysia, la persigue y ataca
+4. En Unity crea el prefab:
    - Crea un Capsule en la escena
    - Asígnale material oscuro `Wall_BG_Mat`
-   - Agrégale `NavMeshAgent`, `EnemyAI`, `EnemyStats`
-   - Guárdalo como `Assets/_Game/Prefabs/Characters/Droglot_Lobo.prefab`
+   - Agrégale los componentes: `NavMeshAgent`, `EnemyAI`, `EnemyStats`
+   - Arrastra a `Assets/_Game/Prefabs/Characters/Droglot_Lobo.prefab`
+5. Crea el asset de datos: `Assets/_Game/ScriptableObjects/Characters/EnemyData_Lobo.asset`
 
 ```bash
 git add Assets/_Game/Scripts/Enemy/
 git add Assets/_Game/Prefabs/Characters/Droglot_Lobo.prefab
 git add Assets/_Game/Prefabs/Characters/Droglot_Lobo.prefab.meta
-git commit -m "feat(combat): add Droglot wolf prefab with NavMesh AI"
+git add Assets/_Game/ScriptableObjects/Characters/EnemyData_Lobo.asset
+git add Assets/_Game/ScriptableObjects/Characters/EnemyData_Lobo.asset.meta
+git commit -m "feat(combat): add Droglot wolf prefab with NavMesh AI and stats SO"
 git push origin feature/combat
 ```
 
 #### Orden de tus tareas
 
 ```
-1. EnemyData.cs (ScriptableObject de stats)
-2. EnemyAI.cs (NavMesh, seguir a Elysia, atacar)
-3. Droglot_Lobo.prefab
-4. CombatManager.cs (inicia combate al cargar Bosque_Oscuro)
+1. EnemyData.cs (ScriptableObject de stats configurables)
+2. EnemyStats.cs (vida actual, recibir daño, morir)
+3. EnemyAI.cs (NavMesh, perseguir a Elysia, atacar)
+4. Droglot_Lobo.prefab
+5. CombatManager.cs (inicia combate al cargar Bosque_Oscuro, detecta fin de demo)
 ```
 
 ---
 
-## Resumen de dependencias entre miembros
+## Diagrama de dependencias entre miembros
 
 ```
-Juan José termina GameManager + SceneLoader
+Juan José termina GameManager + SceneLoader → merge a develop
               ↓
-    Todos pueden hacer pull y empezar sus sistemas
+    Nicolás puede conectar el menú al SceneLoader
+    Todos pueden usar SceneLoader para cambiar escenas
 
-Juan José termina Player.prefab
+Juan José termina Player.prefab → merge a develop
               ↓
     Nero puede colocar a Elysia en sus escenas de prueba
     Persona adicional puede probar la IA del lobo contra Elysia
 
-Nero termina Bosque_Oscuro.unity con NavMesh
+Nero termina Bosque_Oscuro.unity con NavMesh → merge a develop
               ↓
     Persona adicional puede probar los lobos en el escenario real
 
-Nicolás termina DialogueData + DialogueUI
+Nicolás termina DialogueData + DialogueUI → merge a develop
               ↓
-    Los diálogos de la cinemática 1 y 2 pueden mostrarse en pantalla
+    Los diálogos de Elysia y Lucerna aparecen en pantalla
 ```
 
 ---
 
 ## Reglas que todos deben respetar
 
-1. **Nunca** hacer push directamente a `main` o `develop`
-2. **Siempre** hacer `git pull origin develop` antes de empezar a trabajar
+1. **Nunca** hacer push directamente a `main` o `develop` — siempre trabajar en `feature/tu-rama`
+2. **Siempre** hacer `git pull origin develop` antes de empezar a trabajar cada día
 3. **Guardar la escena en Unity** (`Ctrl+S`) antes de hacer `git add`
-4. **Commitear los `.meta`** junto con cada archivo nuevo — sin ellos las referencias se rompen
-5. **Crear un PR** en GitHub cuando termines algo — el equipo lo aprueba antes de mergear
-6. Trabajar en tu escena personal de prueba (`_Test_TuNombre.unity`) para no pisar la escena oficial
+4. **Commitear los `.meta`** junto con cada archivo nuevo — sin ellos las referencias se rompen para el resto
+5. **Crear un Pull Request** en GitHub cuando termines algo — necesita 1 aprobación del equipo antes de mergear
+6. Probar tus cambios en una **escena personal** (`_Test_TuNombre.unity`) antes de tocar las escenas oficiales
 
 ---
 
 ## Recursos del proyecto
 
-| Recurso | URL |
+| Recurso | Dónde |
 |---|---|
 | Repositorio | https://github.com/anavitateg/elysiagame |
 | Tablero Trello | https://trello.com/b/BK1q96lS/elysia-descent-desarrollo |
